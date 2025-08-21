@@ -53,6 +53,7 @@ public class InitDB {
         taskService.addTask(new RequestTaskDTO("Task4", "Description4", LocalDate.of(2025, 8, 19), 2));
         taskService.addTask(new RequestTaskDTO("Task5", "Description5", LocalDate.of(2025, 9, 01), 1));
         taskService.addTask(new RequestTaskDTO("Task6", "Description6", LocalDate.of(2025, 8, 19), 1));
+        taskService.addTask(new RequestTaskDTO("Task7", "Description7", LocalDate.of(2025, 8, 19), 1));
 
         userService.assignTaskToUser(1, 3);
         userService.assignTaskToUser(2, 3);
