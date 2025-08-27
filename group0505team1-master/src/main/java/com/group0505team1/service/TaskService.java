@@ -106,7 +106,7 @@ public class TaskService implements TaskServiceInterface {
             return new ResponseDTO(404, "Task not found", null);
         }
         if (Arrays.stream(TaskPriority.values()).noneMatch(r -> r.name().equals(taskPriority))) {
-            return new ResponseDTO<>(400, "Invalid priority", null);
+            return new ResponseDTO<>(400, "Invalid priority . User this words HIGH,LOW,MEDIUM", null);
         }
 
         taskRepositoryInterface.setTaskPriority(task, TaskPriority.valueOf(taskPriority));
@@ -130,7 +130,7 @@ public class TaskService implements TaskServiceInterface {
         try {
             date = LocalDate.parse(deadline);
         } catch (DateTimeParseException e) {
-            return new ResponseDTO(400, "Invalid date format", null);
+            return new ResponseDTO(400, "Invalid date format . Use YEAR-MONTH-DAY", null);
         }
         taskRepositoryInterface.setDeadline(task, date);
         return new ResponseDTO(200, "Successfully set task deadline", task);
@@ -161,6 +161,42 @@ public class TaskService implements TaskServiceInterface {
 
     public Task of(TaskDTO taskDTO) {
         return taskRepositoryInterface.findById(taskDTO.getId());
+    }
+
+    @Override
+    public ResponseDTO setTaskTitle(int taskId, String taskTitle) {
+        if (!isAuthenticated()) return new ResponseDTO(401, "Authentication required", null);
+        if (!isAdmin()) return new ResponseDTO(403, "Access denied. Admin rights are required", null);
+
+        Task task = taskRepositoryInterface.findById(taskId);
+        if (task == null) {
+            return new ResponseDTO(404, "Task not found", null);
+        }
+        if (taskTitle == null || taskTitle.isEmpty()) {
+            return new ResponseDTO(400, "Parameter is required", null);
+        }
+
+        taskRepositoryInterface.setTitle(task, taskTitle);
+        return new ResponseDTO(200, "Successfully set task title", task);
+
+    }
+
+    @Override
+    public ResponseDTO setTaskDescription(int taskId, String taskDescription) {
+        if (!isAuthenticated()) return new ResponseDTO(401, "Authentication required", null);
+        if (!isAdmin()) return new ResponseDTO(403, "Access denied. Admin rights are required", null);
+
+        Task task = taskRepositoryInterface.findById(taskId);
+        if (task == null) {
+            return new ResponseDTO(404, "Task not found", null);
+        }
+        if (taskDescription == null || taskDescription.isEmpty()) {
+            return new ResponseDTO(400, "Parameter is required", null);
+        }
+
+        taskRepositoryInterface.setDescription(task, taskDescription);
+        return new ResponseDTO(200, "Successfully set task title", task);
+
     }
 }
 

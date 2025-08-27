@@ -172,6 +172,51 @@ public class UtilsProcess {
         System.out.println("Status: " + response.getMessage());
     }
 
+    public void setTaskTitleProcess() {
+        int taskId = UserInputStatic.inputInt("Enter the id of the task : ");
+        String title = UserInputStatic.inputText("Enter the title of the task: ");
+        ResponseDTO response = taskService.setTaskTitle(taskId, title);
+        if (response.getCode() != 200) {
+            System.out.println(response.getMessage());
+            return;
+        }
+        System.out.println("Title: " + response.getMessage());
+    }
+
+    public void setTaskDescriptionProcess() {
+        int taskId = UserInputStatic.inputInt("Enter the id of the task : ");
+        String description = UserInputStatic.inputText("Enter the description of the task: ");
+        ResponseDTO response = taskService.setTaskDescription(taskId, description);
+        if (response.getCode() != 200) {
+            System.out.println(response.getMessage());
+            return;
+        }
+        System.out.println("Description: " + response.getMessage());
+    }
+
+
+    public void setTaskPriorityProcess() {
+        int taskId = UserInputStatic.inputInt("Enter the id of the task : ");
+        String priority = UserInputStatic.inputText("Enter the priority of the task (HIGH,MEDIUM,LOW) : ");
+        ResponseDTO response = taskService.setTaskPriority(taskId, priority);
+        if (response.getCode() != 200) {
+            System.out.println(response.getMessage());
+            return;
+        }
+        System.out.println("Priority: " + response.getMessage());
+    }
+
+    public void setTaskDeadlineProcess() {
+        int taskId = UserInputStatic.inputInt("Enter the id of the task : ");
+        String deadline = UserInputStatic.inputText("Enter the deadline of the task . Use this format : YEAR-MONTH-DAY: ");
+        ResponseDTO response = taskService.setDeadline(taskId, deadline);
+        if (response.getCode() != 200) {
+            System.out.println(response.getMessage());
+            return;
+        }
+        System.out.println("Deadline: " + response.getMessage());
+    }
+
     public void showUserTaskProcess() {
         ResponseDTO response = userService.getMyTasks();
         if (response.getCode() != 200) {
@@ -285,24 +330,24 @@ public class UtilsProcess {
         System.out.println("[Send message]");
         String text = UserInputStatic.inputText("Input message");
         int id = UserInputStatic.inputInt("Input receiver id");
-        RequestMessageDTO messageDTO = new RequestMessageDTO(text,id);
+        RequestMessageDTO messageDTO = new RequestMessageDTO(text, id);
         messageService.sendMessage(messageDTO);
     }
 
     public void showIncomingMessages() {
         System.out.println("[Show incoming messages]");
-       ResponseDTO allIncomingMessage = messageService.getReceivedMessages();
-       List<MessageDTO> list = (List<MessageDTO>) allIncomingMessage.getDataObject();
-       for (MessageDTO m : list){
-           System.out.println(m);
-       }
+        ResponseDTO allIncomingMessage = messageService.getReceivedMessages();
+        List<MessageDTO> list = (List<MessageDTO>) allIncomingMessage.getDataObject();
+        for (MessageDTO m : list) {
+            System.out.println(m);
+        }
     }
 
     public void showOutgoingMessages() {
         System.out.println("[Show outgoing messages]");
         ResponseDTO allSentMessage = messageService.getSentMessages();
         List<MessageDTO> list = (List<MessageDTO>) allSentMessage.getDataObject();
-        for (MessageDTO m : list){
+        for (MessageDTO m : list) {
             System.out.println(m);
         }
     }
@@ -311,7 +356,7 @@ public class UtilsProcess {
         System.out.println("[Show all messages (Admin)]");
         ResponseDTO allMessage = messageService.getAllMessages();
         List<MessageDTO> list = (List<MessageDTO>) allMessage.getDataObject();
-        for (MessageDTO m : list){
+        for (MessageDTO m : list) {
             System.out.println(m);
         }
     }

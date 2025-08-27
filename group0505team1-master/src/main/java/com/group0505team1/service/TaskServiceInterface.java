@@ -17,5 +17,8 @@ public interface TaskServiceInterface {
     ResponseDTO assignTaskToProject(int taskId, int projectId);
     void setProjectService(ProjectServiceInterface projectService);
     Task of(TaskDTO taskDTO);
+    ResponseDTO setTaskTitle(int taskId, String taskTitle);
+    ResponseDTO setTaskDescription(int taskId, String taskDescription);
+
 }
 

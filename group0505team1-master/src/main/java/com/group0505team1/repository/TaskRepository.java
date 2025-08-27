@@ -66,5 +66,15 @@ public class TaskRepository implements TaskRepositoryInterface {
          task.setProjectId(projectId);
     }
 
+    @Override
+    public void setTitle(Task task, String taskTitle) {
+        task.setTitle(taskTitle);
+    }
+
+    @Override
+    public void setDescription(Task task, String taskDescription) {
+        task.setDescription(taskDescription);
+    }
+
 
 }

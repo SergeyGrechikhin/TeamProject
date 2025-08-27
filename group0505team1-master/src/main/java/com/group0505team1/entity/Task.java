@@ -7,6 +7,15 @@ public class Task {
     private int id = 0;
     private String title;
     private String description;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     private TaskStatus status;
     private TaskPriority priority;
     private LocalDate deadline;

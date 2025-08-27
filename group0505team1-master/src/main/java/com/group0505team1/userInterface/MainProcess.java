@@ -83,6 +83,10 @@ public class MainProcess {
                 case "5" -> utilsProcess.getTasksForUserByIdProcess();
                 case "6" -> utilsProcess.assignTaskToUserProcess();
                 case "7" -> utilsProcess.showAllUsersFromTaskIdProcess();
+                case "8" -> utilsProcess.setTaskTitleProcess();
+                case "9" -> utilsProcess.setTaskDescriptionProcess();
+                case "10" -> utilsProcess.setTaskPriorityProcess();
+                case "11" -> utilsProcess.setTaskDeadlineProcess();
                 case "0" -> isRunning = false;
                 default -> System.out.println("Invalid command!");
             }
@@ -118,16 +122,23 @@ public class MainProcess {
 
     private void showTaskMenu() {
         System.out.println("1. Show my tasks");
-        System.out.println("2. Change task status");
+
         if (SessionContext.isAdmin()) {
+            System.out.println("2. Change task status");
             System.out.println("3. Create new task (Admin only)");
             System.out.println("4. Show all tasks (Admin only)");
             System.out.println("5. Show tasks for user (Admin only)");
             System.out.println("6. Assign task to user (Admin only)");
             System.out.println("7. Show users for task (Admin only)");
+            System.out.println("8. Change task title");
+            System.out.println("9. Change task description");
+            System.out.println("10. Change task priority");
+            System.out.println("11. Change task deadline");
         }
         System.out.println("0. Exit menu");
     }
+
+
 
     private void showUserMenu() {
         System.out.println("1. Show my profile");

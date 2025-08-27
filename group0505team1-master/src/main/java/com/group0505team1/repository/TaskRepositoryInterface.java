@@ -24,4 +24,8 @@ public interface TaskRepositoryInterface {
 
     void assignTaskToProject(Task task, int projectId);
 
+    void setTitle(Task task, String taskTitle);
+
+    void setDescription(Task task, String taskDescription);
+
 }
