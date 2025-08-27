@@ -160,6 +160,18 @@ public class UtilsProcess {
         System.out.println("Role: " + response.getMessage());
     }
 
+
+    public void setTaskStatusProcess() {
+        int taskId = UserInputStatic.inputInt("Enter the id of the task : ");
+        String status = UserInputStatic.inputText("Enter the status of the task(TODO,IN_PROGRESS,DONE) : ");
+        ResponseDTO response = taskService.setTaskStatus(taskId, status);
+        if (response.getCode() != 200) {
+            System.out.println(response.getMessage());
+            return;
+        }
+        System.out.println("Status: " + response.getMessage());
+    }
+
     public void showUserTaskProcess() {
         ResponseDTO response = userService.getMyTasks();
         if (response.getCode() != 200) {

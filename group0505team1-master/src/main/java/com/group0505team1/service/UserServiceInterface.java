@@ -26,4 +26,5 @@ public interface UserServiceInterface {
     ResponseDTO getMyTasks();
     ResponseDTO setUserRole(int idUser, String role);
     ResponseDTO getAllUserFromTaskId(int idTask);
+
 }

@@ -13,17 +13,35 @@ public class UserInputStatic {
     }
 
     public static int inputInt(String message){
-        System.out.println(message);
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        return input;
+        while(true){
+            System.out.println(message);
+            String input = scanner.nextLine().trim();
+            if (input.isEmpty()){
+                System.out.println("Input is empty, try again");
+                continue;
+            }
+            try{
+                return Integer.parseInt(input);
+            }catch (NumberFormatException e) {
+                System.out.println("Invalid number format . Please enter an Integer!");
+            }
+        }
     }
 
     public static double inputDouble(String message){
-        System.out.println(message);
-        double input = scanner.nextDouble();
-        scanner.nextLine();
-        return input;
+        while(true){
+            System.out.println(message);
+            String input = scanner.nextLine().trim();
+            if (input.isEmpty()){
+                System.out.println("Input is empty, try again");
+                continue;
+            }
+            try{
+                return Double.parseDouble(input);
+            }catch (NumberFormatException e) {
+                System.out.println("Invalid number format . Please enter an Integer!");
+            }
+        }
     }
 
     public static LocalDate inputDate(String message){

@@ -77,11 +77,12 @@ public class MainProcess {
             String command = UserInputStatic.inputText("Enter the command:").toUpperCase();
             switch (command) {
                 case "1" -> utilsProcess.showUserTaskProcess();
-                case "2" -> utilsProcess.createNewTaskProcess();
-                case "3" -> utilsProcess.showAllTaskProcess();
-                case "4" -> utilsProcess.getTasksForUserByIdProcess();
-                case "5" -> utilsProcess.assignTaskToUserProcess();
-                case "6" -> utilsProcess.showAllUsersFromTaskIdProcess();
+                case "2" -> utilsProcess.setTaskStatusProcess();
+                case "3" -> utilsProcess.createNewTaskProcess();
+                case "4" -> utilsProcess.showAllTaskProcess();
+                case "5" -> utilsProcess.getTasksForUserByIdProcess();
+                case "6" -> utilsProcess.assignTaskToUserProcess();
+                case "7" -> utilsProcess.showAllUsersFromTaskIdProcess();
                 case "0" -> isRunning = false;
                 default -> System.out.println("Invalid command!");
             }
@@ -117,12 +118,13 @@ public class MainProcess {
 
     private void showTaskMenu() {
         System.out.println("1. Show my tasks");
+        System.out.println("2. Change task status");
         if (SessionContext.isAdmin()) {
-            System.out.println("2. Create new task (Admin only)");
-            System.out.println("3. Show all tasks (Admin only)");
-            System.out.println("4. Show tasks for user (Admin only)");
-            System.out.println("5. Assign task to user (Admin only)");
-            System.out.println("6. Show users for task (Admin only)");
+            System.out.println("3. Create new task (Admin only)");
+            System.out.println("4. Show all tasks (Admin only)");
+            System.out.println("5. Show tasks for user (Admin only)");
+            System.out.println("6. Assign task to user (Admin only)");
+            System.out.println("7. Show users for task (Admin only)");
         }
         System.out.println("0. Exit menu");
     }

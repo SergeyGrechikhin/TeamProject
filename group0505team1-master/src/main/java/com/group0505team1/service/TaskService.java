@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-public class TaskService implements TaskServiceInterface{
+public class TaskService implements TaskServiceInterface {
     TaskRepositoryInterface taskRepositoryInterface;
     UserSecurity userSecurity;
     ProjectServiceInterface projectService;
@@ -28,6 +28,7 @@ public class TaskService implements TaskServiceInterface{
     private boolean isAuthenticated() {
         return SessionContext.isAuthenticated();
     }
+
     private boolean isAdmin() {
         return SessionContext.isAdmin();
     }
@@ -128,7 +129,7 @@ public class TaskService implements TaskServiceInterface{
         LocalDate date;
         try {
             date = LocalDate.parse(deadline);
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return new ResponseDTO(400, "Invalid date format", null);
         }
         taskRepositoryInterface.setDeadline(task, date);
@@ -158,7 +159,7 @@ public class TaskService implements TaskServiceInterface{
         this.projectService = projectService;
     }
 
-    public Task of(TaskDTO taskDTO){
+    public Task of(TaskDTO taskDTO) {
         return taskRepositoryInterface.findById(taskDTO.getId());
     }
 }
